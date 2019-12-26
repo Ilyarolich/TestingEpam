@@ -11,9 +11,9 @@ namespace FrameworkLab
 		private const string url = "https://www.aviasales.com/";
 
 		[FindsBy(How = How.XPath, Using = "//input[@id='origin']")]
-        private IWebElement departureCity;
-        [FindsBy(How = How.XPath, Using = "//input[@id='destination']")]
-        private IWebElement destinationCity;
+        	private IWebElement departureCity;
+        	[FindsBy(How = How.XPath, Using = "//input[@id='destination']")]
+        	private IWebElement destinationCity;
 		[FindsBy(How = How.XPath, Using = "//input[@id='departDate']")]
 		private IWebElement departDate;
 		[FindsBy(How = How.XPath, Using = "//div[@class='date-input__input-wrap --error']")]
@@ -34,10 +34,10 @@ namespace FrameworkLab
 		private IWebElement hotelButton;
 		
 		public FlightsPage()
-        {
+        	{
 			webDriver = DriverSingleton.GetDriver();
 			webDriver.Navigate().GoToUrl(url);
-			Logger.Log.Info($"Go to {url}");
+			Logger.Log.Info($"Followed {url}");
 		}
 
 		public FlightsPage Enter()
@@ -47,7 +47,7 @@ namespace FrameworkLab
 
 		public FlightsPage EnterDepartureCity(string city)
 		{
-			Logger.Log.Info("Enter departure city");
+			Logger.Log.Info("Departure city entered");
 			departureCity.Clear();
 			departureCity.SendKeys(city);
 			return this;
@@ -55,7 +55,7 @@ namespace FrameworkLab
 
 		public FlightsPage EnterDestinationCity(string city)
 		{
-			Logger.Log.Info("Enter destination city");
+			Logger.Log.Info("Destination city entered");
 			destinationCity.Clear();
 			destinationCity.SendKeys(city);
 			return this;
@@ -63,7 +63,7 @@ namespace FrameworkLab
 
 		public FlightsPage EnterDepartDate(string date)
 		{
-			Logger.Log.Info("Enter depart date");
+			Logger.Log.Info("Departure date entered");
 			departDate.Clear();
 			departDate.SendKeys(date);
 			return this;
@@ -105,20 +105,6 @@ namespace FrameworkLab
 			return departDate.Text;
 		}
 
-		public string GetCurrentCurrency()
-		{
-			Logger.Log.Info("Get current currency");
-			return currentCurrency.Text;
-		}
-
-		public string GetPriceCurrency()
-		{
-			Logger.Log.Info("Get price currency");
-			int startIndex = 8;
-			int length = 3;
-			return currentPrice.GetCssValue("class").Substring(startIndex, length);
-		}
-
 		public HotelPage ClickHotelButton()
 		{
 			Logger.Log.Info("Click hotel button");
@@ -143,7 +129,6 @@ namespace FrameworkLab
 		public string GetMessageFlightsPage()
 		{
 			Logger.Log.Info("Get FlightsPage message");
-			//We found  flights, but none of them match your filters.
 			return new string(messageFlightsPage.Text.ToCharArray().Where(n => !char.IsDigit(n)).ToArray());
 		}
 	}
