@@ -80,18 +80,6 @@ namespace FrameworkLab
 		}
 
 		[Test]
-		public void AreEqualCurrentCurrencyAndPriceCurrency()
-		{
-			FlightsPage flightsPage = new FlightsPage()
-				.EnterDepartureCity("Minsk")
-				.EnterDestinationCity("Moscow")
-				.EnterDepartDate("28 December, Sa")
-				.Enter();
-
-			Assert.AreEqual(flightsPage.GetCurrentCurrency(), flightsPage.GetPriceCurrency());
-		}
-
-		[Test]
 		public void AreAqualHotelCityAndDestinationCity()
 		{
 			string expectedDestinationCity = "Moscow";
